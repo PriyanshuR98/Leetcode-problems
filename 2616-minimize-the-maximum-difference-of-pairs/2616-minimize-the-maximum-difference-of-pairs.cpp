@@ -1,6 +1,6 @@
 class Solution {
 public:
-        // trying nlogn solution.
+        // 
     
             // binary searching on answer..
     bool checker(int possdiff,int p, vector<int>&nums)
