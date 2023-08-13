@@ -1,39 +1,29 @@
 class Solution {
 public:
-    int solver(int index, vector<int>&prices, bool bought, vector< vector<int> >&dp)
-    {
-        if(index>=prices.size())
-        {
-            return 0;
-        
-        }
-        
-        if(dp[index][bought]!=-1)
-        {
-            return dp[index][bought];
-        }
-        
-        int profit=0;
-        
-        if(bought==false)  // can buy or not.
-        {
-            profit= max(profit-prices[index]+solver(index+1,prices,!bought,dp), solver(index+1,prices,bought,dp) );
-        }
-        
-        if(bought==true)  //can sell or not..
-        {
-          profit=max(profit+prices[index]+solver(index+1,prices,!bought,dp),solver(index+1,prices,bought,dp));
-        }
-        
-        return dp[index][bought]=profit;
-        
-    }
     int maxProfit(vector<int>& prices) {
-        int n=prices.size();        
-        
-        vector<vector<int>>dp(n,vector<int>(2,-1));
-        
-        return solver(0,prices,false,dp);
+
+        int n=prices.size();
+        vector< vector<int> >dp(n+1,vector<int>(2,-1));
+
+        dp[n][0]=0;
+        dp[n][1]=0;
+
+        for(int i=n-1;i>=0;i--)
+        {
+            for(int j=0;j<=1;j++)
+            {
+                if(j==0) // ie doesnt have stock..
+                {
+                    dp[i][j]=max(-prices[i]+dp[i+1][1],0+dp[i+1][0]);
+                }
+                if(j==1)
+                {
+                    dp[i][j]=max(prices[i]+dp[i+1][0],0+dp[i+1][1]);
+                }
+            }
+        }
+
+        return dp[0][0];
         
     }
 };
