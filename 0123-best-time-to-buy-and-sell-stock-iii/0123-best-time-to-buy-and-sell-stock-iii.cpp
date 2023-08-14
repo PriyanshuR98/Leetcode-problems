@@ -6,6 +6,10 @@ public:
         {
             return 0;
         }
+        if(transactions>2)
+        {
+            return 0;
+        }
         if(dp[index][brought][transactions]!=-1)
         {
             return dp[index][brought][transactions];
@@ -14,10 +18,10 @@ public:
 
         if(brought==0)
         {
-            if(transactions<2)  // we can buy
-            {
+            // if(transactions<2)  // we can buy
+            // {
                 profit= -prices[index]+helper(index+1,prices,1,transactions+1,dp);
-            }
+            // }
 
             // we dont want to buy
             profit=max(profit, helper(index+1,prices,0, transactions,dp));
