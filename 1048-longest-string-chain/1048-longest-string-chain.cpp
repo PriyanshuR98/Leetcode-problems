@@ -6,33 +6,33 @@ bool comp(string s1, string s2)
 
  bool compare(string s1, string s2)
     {
-        if(s1.size()!=s2.size()+1)
-        {
-            return 0;
-        }
-        
-        int i=0;
-        int j=0;
-        
-        while(i<s1.length() and j<s2.length())
-        {
-            if(s1[i]==s2[j])
-            {
-                i++;
-                j++;
-            }
-            else
-            {
-                i++;
-            }
+       //s1 bada wla hai
+       int i=0;
+       int j=0;
+     int cnt=0;
+    //    int extra=0;
+       while(i<s1.size())
+       {
+           if(j<s2.size() and s1[i]==s2[j])
+           {
+               i++;
+               j++;
+           }
+           else
+           {
+               i++;
+               cnt++;
+               
+           }
+       }
+     
+     if(cnt==1 and j==s2.length())
+     {
+         return 1;
+     }
+     return 0;
 
-        }
-
-        if(j==s2.length())
-        {
-            return 1;
-        }
-        return 0;
+      
         
         
     }
