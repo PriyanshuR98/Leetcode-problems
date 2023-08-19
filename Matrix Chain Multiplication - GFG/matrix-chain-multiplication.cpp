@@ -9,38 +9,38 @@ using namespace std;
 
 class Solution{
 public:
-    int counter(int i, int j, int arr[], vector<vector<int>>&dp)
-    {   //base case
-        if(i==j)
-        {
-            return 0;
-        }
-        if(dp[i][j]!=-1)
-        {
-            return dp[i][j];
-        }
-        int mini=1e9;
-        for(int par=i;par<=j-1;par++)
-        {
-            int steps=counter(i,par,arr,dp)+counter(par+1,j,arr,dp)+arr[i-1]*arr[par]*arr[j];
-            mini=min(mini,steps);
-        }
-        
-        return dp[i][j]=mini;
-        
-        
-        
-        
-    }
     int matrixMultiplication(int N, int arr[])
     {
         // code here
-        // lfg..
         vector<vector<int>>dp(N,vector<int>(N,-1));
         
-        return counter(1,N-1,arr,dp);
+        //base case..
+        for(int i=0;i<N;i++)
+        {
+            dp[i][i]=0;
+        }
         
+        int mini=1e9;
+        for(int i=N-1;i>=0;i--)
+        {
+            for(int j=i+1;j<N;j++)
+            {
+                int mini=1e9;
+                for(int par=i;par<j;par++)
+                {
+                    int steps=arr[i-1]*arr[par]*arr[j]+dp[i][par]+dp[par+1][j];
+                    mini=min(mini,steps);
+                }
+                
+                dp[i][j]=mini;
+                
+                    
+            }
+            
+            
+        }
         
+        return dp[1][N-1];
     }
 };
 
