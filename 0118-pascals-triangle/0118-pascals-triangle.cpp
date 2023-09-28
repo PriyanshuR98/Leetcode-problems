@@ -1,37 +1,33 @@
 class Solution {
 public:
+    vector<int>rowcalc(int row)
+    {
+        vector<int>temp;
+        int ans=1;
+        
+          temp.push_back(ans);
+        
+        
+        for(int col=1;col<row;col++)
+        {
+            ans*=(row-col);
+            ans=ans/col;
+            
+            temp.push_back(ans);
+        }
+        return temp;
+    }
     vector<vector<int>> generate(int numRows) 
     {
-          vector<vector<int>>finalx;
-        vector<int>temp;
-        temp.push_back(1);
-        finalx.push_back(temp);
-        if(numRows==1)
+     //striver approach
+        // formula r-1 C c-1 for element in rth row and cth col.
+        vector<vector<int>>ans;
+        for(int i=1;i<=numRows;i++)
         {
-            return finalx;
-        }
-        temp.push_back(1);
-        finalx.push_back(temp);
-        if(numRows==2)
-        {
-            return finalx;
+            ans.push_back(rowcalc(i));
         }
         
+        return ans;
         
-        for(int i=2;i<numRows;i++)
-        {
-            vector<int>temp;
-            temp.push_back(1);
-            vector<int>upper=finalx[i-1];
-            for(int j=0;j<=upper.size()-2;j++)
-            {
-                temp.push_back(upper[j]+upper[j+1]);
-            }
-            
-            temp.push_back(1);
-            finalx.push_back(temp);    
-  
-        }
-        return finalx;
     }
 };
