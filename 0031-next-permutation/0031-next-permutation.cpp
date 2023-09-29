@@ -32,7 +32,8 @@ public:
     }
 
     // Step 3: reverse the right half:
-    reverse(nums.begin() + ind + 1, nums.end());
+    // reverse(nums.begin() + ind + 1, nums.end());
+    sort(nums.begin() + ind + 1, nums.end());
 
     return ;
         
