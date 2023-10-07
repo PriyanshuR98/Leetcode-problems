@@ -1,23 +1,28 @@
 class Solution {
 public:
-    int majorityElement(vector<int>& nums) {
+    int majorityElement(vector<int>& nums)
+    {
         int n=nums.size();
-        sort(nums.begin(),nums.end());
-        
-        // for(auto it:nums)
-        // {
-        //     cout<<it<<" ";
-        // }
-        // cout<<endl;
-        for(int i=0;i<=(n/2);i++)
+        int cnt=0;
+        int val=-1;
+        for(int i=0;i<n;i++)
         {
-            // cout<<"i->"<<i<<"   ";
-            if(nums[i]==nums[i+(n/2)])
+            if(cnt==0)
             {
-                return nums[i];
+                val=nums[i];
             }
+            if(nums[i]==val)
+            {
+                cnt++;
+            }
+            else
+            {
+                cnt--;
+            }
+           
         }
         
-        return 0;
+        return val;
+        
     }
 };
